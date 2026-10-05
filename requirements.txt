@@ -1,0 +1,8 @@
+numpy>=2.0,<3
+pandas>=2.2,<3
+scipy>=1.14,<2
+mne>=1.10,<2
+pyxdf>=1.17,<2
+matplotlib>=3.8,<4
+seaborn>=0.13,<1
+PyYAML>=6,<7
