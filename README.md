@@ -96,19 +96,21 @@ Keep any changed YAML with the resulting outputs when comparing runs.
    export omitted the microvolt-to-volt conversion. This confirmation does not establish
    that a corrected public dataset release has been published. The analysis here
    uses the original XDF with explicit unit conversion.
+      As of 22 November 2026, the latest public release (v1.0.5) and the public
+   conversion script still omit this conversion.
 
-3. Apply 0.5–40 Hz FIR filtering; acquisition already used a 50 Hz notch.
+4. Apply 0.5–40 Hz FIR filtering; acquisition already used a 50 Hz notch.
    Screen each channel's filtered 1st–99th percentile range against the
    channel median/MAD (`z > 4`), mark bad channels, average reference while
    excluding them, then spherical-spline interpolate. `sub-001` flagged F7.
    Other participants may differ. No automatic ICA is used without validated
    ocular components or a dedicated EOG channel.
-4. Quantify reported acquisition dropouts and keep provenance annotations.
+5. Quantify reported acquisition dropouts and keep provenance annotations.
    For spectra use nonoverlapping 4 s windows with ≤5 dropped samples and
    ≤600 µV maximal channel peak to peak amplitude. Welch uses 2 s Hamming
    segments with 50% overlap. Relative 4–7 Hz frontal-midline theta (Fz/Cz)
    and 8–13 Hz posterior alpha (P3/Pz/P4/O1/O2) divide by 1–40 Hz power.
-5. Infer letter onset as **marker time minus 1 s**, based on task display and
+6. Infer letter onset as **marker time minus 1 s**, based on task display and
    marker code, without photodiode confirmation. ERP epochs are −0.2 to 1.0 s
    and baseline corrected at −0.2 to 0 s. Reject epochs with >3 reported
    dropped samples in the original marker−1.2 s to marker QC interval or
@@ -123,7 +125,7 @@ The formal task has **one contiguous block per level**, in the order 1-back,
 2-back, 3-back, 4-back. Workload label therefore tracks elapsed time, fatigue,
 electrode drift and block order. Observed EEG differences cannot be attributed
 uniquely to difficulty. The example figures and per-level tables remain
-**descriptive**; `sub-001` alone cannot support population inference.
+**descriptive**; `sub-001` alone cannot support population inference. This order holds for all 18 publicly released participants; sub-013 and sub-017 are not released and could not be checked.
 
 Ordinary random cross-validation of windows or epochs would put data from the
 same contiguous block in both train and test sets, allowing a classifier to
@@ -132,6 +134,8 @@ would remove the **only** block for its class from training. For these reasons
 the repository deliberately reports **no ordinary random-CV four-class
 workload accuracy**. A multi-participant follow-up needs participant-aware
 validation and a design-level discussion of the shared order confound.
+
+**Behavioural labels.** Accuracy, balanced accuracy and d′ are computed from the public `matched` and `key_press` fields. In all 18 released participants, 1-back and 2-back key presses coincide with the recorded targets less often than chance; for 1- to 3-back, agreement improves when each label is paired with the previous trial's key press, but not for 4-back. The trial-level target labels therefore do not appear to reflect the task as performed, and behavioural outputs should not be read as participant performance. Block-level difficulty labels are unaffected.
 
 ## Reproducibility scope
 
