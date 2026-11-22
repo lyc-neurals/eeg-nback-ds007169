@@ -1,0 +1,36 @@
+# Defaults reproduce the decisions in the original sub-001 notebook.
+timing:
+  marker_to_stimulus_lag_s: 1.0  # letter offset marker; not photodiode validated
+preprocessing:
+  montage: standard_1020
+  line_freq_hz: 50.0  # acquisition notch already applied; no additional notch here
+  highpass_hz: 0.5
+  lowpass_hz: 40.0
+qc:
+  brainvision_probe_samples: 5000
+  channel_robust_z_threshold: 4.0
+spectral:
+  window_s: 4.0
+  max_dropped_samples: 5
+  max_p2p_uv: 600.0
+  welch_segment_s: 2.0
+  welch_overlap_s: 1.0
+  normalization_band_hz: [1.0, 40.0]
+  theta_band_hz: [4.0, 7.0]
+  alpha_band_hz: [8.0, 13.0]
+  beta_band_hz: [13.0, 30.0]
+  frontal_midline_channels: [Fz, Cz]
+  posterior_channels: [P3, Pz, P4, O1, O2]
+erp:
+  tmin_s: -0.2
+  tmax_s: 1.0
+  baseline_end_s: 0.0
+  dropout_lookback_s: 1.2  # marker−1.2 s through marker, as in source notebook
+  max_dropped_samples: 3
+  max_p2p_uv: 400.0
+  plot_channels: [Fz, Cz, Pz]
+plotting:
+  trace_start_s: 615.0
+  trace_duration_s: 8.0
+  trace_offset_uv: 300.0
+  trace_channels: [Fz, Cz, Pz, O1]

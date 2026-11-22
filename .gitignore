@@ -1,0 +1,32 @@
+# EEG and raw/derived dataset files: never commit recordings or participant data.
+/data/*
+!/data/README.md
+*.xdf
+*.eeg
+*.vhdr
+*.vmrk
+*.fif
+*.edf
+*.bdf
+*.set
+*.fdt
+*.tsv
+*.csv
+
+# Pipeline products are reproducible and can be large.
+/results/
+/outputs/
+*.html
+*.h5
+*.hdf5
+*.parquet
+
+# Python, notebook and OS caches.
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+.DS_Store
